@@ -1,0 +1,94 @@
+import Adafruit_DHT
+import RPi.GPIO as GPIO
+import time
+
+# Define board pin numbers
+DHT_PIN = 7  # Physical pin number for DHT11
+LED_PIN_1 = 11  # Physical pin number for first LED
+LED_PIN_2 = 12  # Physical pin number for second LED
+
+# Set up GPIO
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(LED_PIN_1, GPIO.OUT)
+GPIO.setup(LED_PIN_2, GPIO.OUT)
+
+# Initialize DHT sensor
+sensor = Adafruit_DHT.DHT11
+
+def read_temperature():
+    humidity, temperature = Adafruit_DHT.read_retry(sensor, DHT_PIN)
+    return temperature
+
+def main():
+    threshold_temp = 25  # Set your threshold temperature here
+
+    try:
+        while True:
+            temperature = read_temperature()
+            print(f'Temperature: {temperature}°C')
+
+            if temperature > threshold_temp:
+                GPIO.output(LED_PIN_1, GPIO.HIGH)
+                GPIO.output(LED_PIN_2, GPIO.HIGH)
+            else:
+                GPIO.output(LED_PIN_1, GPIO.LOW)
+                GPIO.output(LED_PIN_2, GPIO.LOW)
+
+            time.sleep(2)
+
+    except KeyboardInterrupt:
+        GPIO.cleanup()
+
+if __name__ == "__main__":
+    main()
+
+*************************************************************************************######*************************************************************
+
+import Adafruit_DHT
+import RPi.GPIO as GPIO
+import time
+
+# Define GPIO pins
+DHT_PIN = 4
+LED_PIN_1 = 17
+LED_PIN_2 = 18
+
+# Set up GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(LED_PIN_1, GPIO.OUT)
+GPIO.setup(LED_PIN_2, GPIO.OUT)
+
+# Initialize DHT sensor
+sensor = Adafruit_DHT.DHT11
+
+def read_temperature():
+    humidity, temperature = Adafruit_DHT.read_retry(sensor, DHT_PIN)
+    return temperature
+
+def main():
+    threshold_temp = 25  # Set your threshold temperature here
+
+    try:
+        while True:
+            temperature = read_temperature()
+            print(f'Temperature: {temperature}°C')
+
+            if temperature > threshold_temp:
+                GPIO.output(LED_PIN_1, GPIO.HIGH)
+                GPIO.output(LED_PIN_2, GPIO.HIGH)
+            else:
+                GPIO.output(LED_PIN_1, GPIO.LOW)
+                GPIO.output(LED_PIN_2, GPIO.LOW)
+
+            time.sleep(2)
+
+    except KeyboardInterrupt:
+        GPIO.cleanup()
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+

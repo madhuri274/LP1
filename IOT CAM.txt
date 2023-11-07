@@ -1,0 +1,32 @@
+# simple program for take a picture using rispberry pi with camera
+# Algorithm : 1. import required libraries for picamera
+              2. Create object for PiCamera 
+              3. start preview()
+              4. sleep for 5 sec..
+              5. capture the pic and save in jpg format in path as you want like camera.capture('\home\pi\desktop\imp.jpg')
+              6. stop preview()
+
+//for a picture
+
+from picamera import PiCamera
+from time import sleep
+
+camera = PiCamera()
+
+camera.start_preview()
+sleep(5)
+camera.capture('\home\pi\Desktop\img.jpg')
+camera.stop_preview()
+
+
+//for recording
+
+from picamera import PiCamera
+from time import sleep
+
+camera.start_preview()
+
+camera.start_recording('/home/pi/Desktop/video.h264')      //download VLC media player to read .h264 file
+sleep(5)
+camera.stop_recording()
+camera.stop_preview()

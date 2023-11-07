@@ -1,0 +1,21 @@
+# program for detect obstacle using IR sensor
+
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BOARD)
+
+GPIO.setup(3,GPIO.IN)
+GPIO.setup(5,GPIO.OUT)
+
+while true : 
+      val=GPIO.input(3)
+      
+      if val==1 :
+            GPIO.output(5,FALSE)
+            print("no obstacle")
+     
+      else :
+            GPIO.output(5,TRUE)
+            print("Obstacle Detected......!!!")
+      
+      except KeyboardInterrupt:
+            destroy() 
